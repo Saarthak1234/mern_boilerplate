@@ -8,7 +8,7 @@ A minimal full-stack boilerplate with **Node.js (Express)** backend and **React 
 mern_boilerplate/
 │
 ├── server/      # Node.js + Express backend
-│   └── (entry point like server.js or app.js)
+│   └── (entry point is server.js )
 │
 ├── client/      # React + Vite frontend
 │   └── (Vite project files)
