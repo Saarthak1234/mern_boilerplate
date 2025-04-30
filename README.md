@@ -3,6 +3,8 @@
 A minimal full-stack boilerplate with **Node.js (Express)** backend and **React + Vite** frontend.
 
 ## 📁 Structure
+
+```bash
 mern_boilerplate/
 │
 ├── server/      # Node.js + Express backend
@@ -10,9 +12,7 @@ mern_boilerplate/
 │
 ├── client/      # React + Vite frontend
 │   └── (Vite project files)
-│
-├── README.md
-└── package.json (optional if you setup scripts at root)
+
 
 
 ## 🚀 Setup
