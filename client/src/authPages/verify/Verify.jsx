@@ -80,11 +80,25 @@ const Verify = () => {
   const [isResending, setIsResending] = useState(false)
   const [countdown, setCountdown] = useState(0)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (otp.length === 6) {
       console.log("OTP submitted:", otp)
       // Handle OTP verification logic here
+
+      try {
+        const response = await fetch("http://localhost:3000/auth/verify-otp", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, otp }),
+        })
+        const data = await response.json()
+        console.log("Response:", data)
+      } catch (error) {
+        console.error("Error during OTP verification:", error)
+      }
     }
   }
 

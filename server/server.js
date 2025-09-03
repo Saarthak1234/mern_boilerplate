@@ -3,6 +3,7 @@ import express from 'express';
 import authRoutes from './routes/authRoutes.js';
 import connectDB from './utils/db.js';
 import dotenv from 'dotenv';
+import User from './models/userModel.js';
 dotenv.config();
 connectDB();
 
