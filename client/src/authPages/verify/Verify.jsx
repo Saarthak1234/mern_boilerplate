@@ -3,6 +3,7 @@ import ClickSpark from "../../components/ClickSpark/ClickSpark"
 import InfiniteScroll from "../../components/InfiniteScroll/InfiniteScroll"
 
 import { Link } from "react-router"
+import { OTPForm } from "@/components/otp-form"
 
 // Custom OTP Input Component (mimics react-verification-input)
 const items = [
@@ -128,68 +129,14 @@ const Verify = () => {
 
     <ClickSpark
       className="z-[9999]"
-      sparkColor='#fff'
+      sparkColor='#000000'
       sparkSize={10}
       sparkRadius={18}
-      sparkCount={10}
-      duration={300}>
+      sparkCount={8}
+      duration={400}>
 
-      <div className="bg-black text-white min-h-screen flex flex-col items-center justify-center w-full p-4">
-          <div className="bg-gray-900 rounded-2xl shadow-2xl p-8 w-full max-w-md border border-gray-800">
-            <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-white mb-2">Verify Your Account</h1>
-              <p className="text-gray-400 mb-2">
-                We've sent a verification code to
-              </p>
-              <p className="text-blue-400 font-medium">{email}</p>
-            </div>
-
-            <div className="space-y-6">
-              <div className="space-y-4">
-                <div className="text-center">
-                  <label className="block text-gray-300 text-sm font-medium mb-4">
-                    Enter 6-digit verification code
-                  </label>
-                  <OTPInput
-                    length={6}
-                    onChange={setOtp}
-                    value={otp}
-                  />
-                </div>
-              </div>
-
-              <button
-                onClick={handleSubmit}
-                disabled={otp.length !== 6}
-                className="relative w-full py-3 px-6 bg-gradient-to-r from-blue-600 to-blue-600 text-white font-semibold rounded-xl shadow-lg transform transition-all duration-100 hover:scale-102 hover:from-blue-500 hover:to-blue-500 active:scale-98 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-              >
-                Verify Account
-              </button>
-
-              <div className="text-center space-y-2">
-                <p className="text-gray-400 text-sm">
-                  Didn't receive the code?
-                </p>
-                <button
-                  onClick={handleResendOTP}
-                  disabled={isResending || countdown > 0}
-                  className="text-blue-400 hover:text-blue-300 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
-                >
-                  {isResending ? "Sending..." : countdown > 0 ? `Resend in ${countdown}s` : "Resend Code"}
-                </button>
-              </div>
-
-              <div className="text-center">
-                <p className="text-gray-400 text-sm">
-                  Remember your password?{" "}
-                  <Link to="/login" className="text-blue-400 hover:text-blue-300 transition-colors duration-200">
-                    Back to Login
-                  </Link>
-                </p>
-              </div>
-            </div>
-          </div>
-        
+      <div className="bg-white text-black min-h-screen flex flex-col items-center justify-center w-full p-4">
+        <OTPForm />
       </div>
     </ClickSpark>
   )

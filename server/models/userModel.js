@@ -31,6 +31,14 @@ const userSchema = new mongoose.Schema({
         expireAfterSeconds: 180,
         default:"",
     },
+    githubId: {
+        type: String,
+        default: null,
+    },
+    googleId: {
+        type: String,
+        default: null,
+    },
 });
 
 const User = mongoose.model("User", userSchema);

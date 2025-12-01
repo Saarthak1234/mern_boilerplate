@@ -4,7 +4,9 @@ import {Route, Routes} from 'react-router-dom'
 import './App.css'
 import Login from './authPages/Login/Login'
 import SignUp from './authPages/signup/SignUp'
-import Verify from './authPages/verify/verify'
+import Verify from './authPages/verify/Verify'
+import LoginPage from './LoginPage.jsx'
+import SignupPage from './SignupPage.jsx'
 
 function App() {
 
@@ -13,7 +15,7 @@ function App() {
     <Routes>
       <Route path="/" element={<h1>Home</h1>} />
       <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignUp/>} />
+      <Route path="/signup" element={<SignUp />} />
       <Route path="/verify" element={<Verify />} />
     </Routes>
     </>

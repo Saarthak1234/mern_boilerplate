@@ -1,6 +1,5 @@
 import User from '../models/userModel.js';
 import bcrypt, { getRounds } from 'bcryptjs';
-
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -169,4 +168,29 @@ const resendOtp =async(req,res) =>{
       return res.status(200).json({message : " Successfully updated", user: updatedUser});
 }
 
-export {signUp, verifyOtp, login, updateUser, resendOtp};
+const oauthSuccess = async (req, res) => {
+    try {
+        const user = req.user;
+        // Generate JWT or session token
+        const token = generateToken(user._id);
+        res.status(200).json({
+            message: "OAuth login successful",
+            token: token,
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                userName: user.userName,
+                isVerified: user.isVerified,
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ message: "OAuth error", error: error.message });
+    }
+};
+
+const oauthFailure = (req, res) => {
+    res.status(401).json({ message: "OAuth authentication failed" });
+};
+
+export {signUp, verifyOtp, login, updateUser, resendOtp, oauthSuccess, oauthFailure};
