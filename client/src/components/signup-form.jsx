@@ -22,7 +22,7 @@ export function SignupForm({
   return (
    <div className={cn("flex flex-col gap-6  w-2/7", className)} {...props}>
      <Card className="shadow-none border-none">
-      <CardHeader>
+      <CardHeader className="text-center">
         <CardTitle>Create an account</CardTitle>
         <CardDescription>
           Enter your information below to create your account
