@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { use, useState } from "react"
 import { Link } from "react-router"
 import ClickSpark from "../../components/ClickSpark/ClickSpark"
 import OAuthButtons from "../../components/OAuthComponent/OAuthButtons"
@@ -9,8 +9,9 @@ const Signup = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    username: "",
     password: "",
-    confirmPassword: "",
+    // confirmPassword: "",
   })
 
   const [errors, setErrors] = useState({})
@@ -22,11 +23,18 @@ const Signup = () => {
     if (!formData.email.trim()) newErrors.email = "Email is required"
     if (!formData.password) newErrors.password = "Password is required"
     if (formData.password.length < 6) newErrors.password = "Password must be at least 6 characters"
-    if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match"
-    }
+    // if (formData.password !== formData.confirmPassword) {
+    //   newErrors.confirmPassword = "Passwords do not match"
+    // }
 
     return newErrors
+  }
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    })
   }
 
   const handleSubmit = async (e) => {
@@ -75,7 +83,9 @@ const Signup = () => {
       duration={300}>
 
       <div className="bg-white text-black min-h-screen flex flex-col items-center justify-center w-full p-4">
-        <SignupForm />
+        <SignupForm onSubmit={handleSubmit}
+          formData={formData}
+          onChange={handleChange}/>
       </div>
     </ClickSpark>
   )

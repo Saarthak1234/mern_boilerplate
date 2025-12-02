@@ -5,8 +5,6 @@ import './App.css'
 import Login from './authPages/Login/Login'
 import SignUp from './authPages/signup/SignUp'
 import Verify from './authPages/verify/Verify'
-import LoginPage from './LoginPage.jsx'
-import SignupPage from './SignupPage.jsx'
 
 function App() {
 

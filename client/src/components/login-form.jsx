@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { Link } from "react-router"
 import {
   Card,
   CardContent,
@@ -18,6 +19,9 @@ import { Input } from "@/components/ui/input"
 
 export function LoginForm({
   className,
+  onSubmit,
+  formData,
+  onChange,
   ...props
 }) {
   return (
@@ -30,8 +34,26 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={onSubmit}>
             <FieldGroup>
+              <Field>
+                <FieldLabel htmlFor="email">Email</FieldLabel>
+                <Input id="email" type="email" placeholder="m@example.com" required name="email" value={formData.email} onChange={onChange} />
+              </Field>
+              <Field>
+                <div className="flex items-center">
+                  <FieldLabel htmlFor="password">Password</FieldLabel>
+                  <a href="#" className="ml-auto text-sm underline-offset-4 hover:underline">
+                    Forgot your password?
+                  </a>
+                </div>
+                <Input id="password" type="password" required name="password" value={formData.password} onChange={onChange} />
+              
+                <Button type="submit">Login</Button>
+                </Field>
+              <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
+                Or continue with
+              </FieldSeparator>
               <Field>
                 <Button variant="outline" type="button">
                   <svg
@@ -55,26 +77,10 @@ export function LoginForm({
                   Login with Google
                 </Button>
               </Field>
-              <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
-                Or continue with
-              </FieldSeparator>
               <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input id="email" type="email" placeholder="m@example.com" required />
-              </Field>
-              <Field>
-                <div className="flex items-center">
-                  <FieldLabel htmlFor="password">Password</FieldLabel>
-                  <a href="#" className="ml-auto text-sm underline-offset-4 hover:underline">
-                    Forgot your password?
-                  </a>
-                </div>
-                <Input id="password" type="password" required />
-              </Field>
-              <Field>
-                <Button type="submit">Login</Button>
+                
                 <FieldDescription className="text-center">
-                  Don&apos;t have an account? <a href="#">Sign up</a>
+                  Don&apos;t have an account? <Link to="/signup">Sign up</Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>

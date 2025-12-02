@@ -14,6 +14,11 @@
 **/*.pid.lock
 
 # dotenv files
+.env
+.env.test
+.env.local
+.env.production
+.env.*.local
 
 # VSCode settings
 .vscode/

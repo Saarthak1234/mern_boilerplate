@@ -10,6 +10,13 @@ const Login = () => {
     email: "",
     password: "",
   })
+  
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    })
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -41,7 +48,10 @@ const Login = () => {
 
       <div className="bg-white text-black min-h-screen flex flex-col items-center justify-center w-full p-4">
 
-        <LoginForm />
+        <LoginForm 
+        onSubmit={handleSubmit}
+          formData={formData}
+          onChange={handleChange}/>
       </div>
     </ClickSpark>
   )
