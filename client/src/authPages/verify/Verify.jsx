@@ -77,7 +77,7 @@ const OTPInput = ({ length = 6, onChange, value }) => {
 
 const Verify = () => {
   const [otp, setOtp] = useState("")
-  const [email] = useState("user@example.com") // This would come from props or context
+  const [email] = useState(localStorage.getItem("userEmail")) // This would come from props or context
   const [isResending, setIsResending] = useState(false)
   const [countdown, setCountdown] = useState(0)
 
@@ -88,8 +88,9 @@ const Verify = () => {
       // Handle OTP verification logic here
 
       try {
-        const response = await fetch("http://localhost:3000/auth/verify-otp", {
-          method: "POST",
+        console.log("Verifying OTP for email:", email, "OTP:", otp)
+        const response = await fetch("http://localhost:5000/auth/verify", {
+          method: "PATCH",
           headers: {
             "Content-Type": "application/json",
           },
@@ -104,26 +105,49 @@ const Verify = () => {
   }
 
   const handleResendOTP = async () => {
-    setIsResending(true)
-    setCountdown(30)
+  // 1. Guard Clause: Stop immediate multiple clicks logic side
+  if (isResending || countdown > 0) return;
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsResending(false)
-      console.log("OTP resent")
-    }, 1000)
+  setIsResending(true);
+  console.log("Resending OTP to:", email);
 
-    // Countdown timer
+  try {
+    const response = await fetch("http://localhost:5000/auth/resendotp", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+    
+    // Check if response is ok before starting timer
+    if (!response.ok) {
+       throw new Error("Failed to resend");
+    }
+
+    const data = await response.json();
+    console.log("Response:", data);
+
+    // 2. Start Timer only on success
+    setCountdown(30);
     const timer = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
-          clearInterval(timer)
-          return 0
+          clearInterval(timer);
+          return 0;
         }
-        return prev - 1
-      })
-    }, 1000)
+        return prev - 1;
+      });
+    }, 1000);
+
+  } catch (error) {
+    console.error("Error during OTP resend:", error);
+    // You might want to show a toast error here
+  } finally {
+    // 3. Always turn off the "IsResending" loading state
+    setIsResending(false);
   }
+};
 
   return (
 
@@ -136,7 +160,15 @@ const Verify = () => {
       duration={400}>
 
       <div className="bg-white text-black min-h-screen flex flex-col items-center justify-center w-full p-4">
-        <OTPForm />
+        <OTPForm
+          onSubmit={handleSubmit}
+          onChange={setOtp}
+          value={otp}
+          email={email}
+          isResending={isResending}
+          countdown={countdown}
+          onResend={handleResendOTP}
+        />
       </div>
     </ClickSpark>
   )

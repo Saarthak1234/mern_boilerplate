@@ -10,7 +10,7 @@ import cors from 'cors';
 
 
 dotenv.config();
-// connectDB();
+connectDB();
 
 
 const app = express();
@@ -20,6 +20,7 @@ app.use(cors({
     origin: "http://localhost:5173", // Your React dev server
     credentials: true,
 }));
+
 app.use(express.json());
 
 app.use(session({

@@ -2,7 +2,7 @@ import React from 'react';
 import SplitText from '../../components/SplitText.jsx';
 import ClickSpark from '@/components/ClickSpark/ClickSpark.jsx';
 
-const HomePage = () => {
+ const HomePage = () => {
     return (
         <ClickSpark
             className="z-[9999]"
@@ -14,7 +14,7 @@ const HomePage = () => {
             <div className="flex flex-col items-center justify-center min-h-screen">
 
                 {/* First Line */}
-                <div className="text-4xl font-bold mb-4 text-center">
+                <div className="text-5 xl font-bold mb-4 text-center">
                     <SplitText
                         text="Welcome to"
                         duration={1}
@@ -29,7 +29,7 @@ const HomePage = () => {
                 </div>
 
                 {/* Second Line */}
-                <div className="text-4xl font-bold text-center">
+                <div className="text-5xl font-bold text-center">
                     <SplitText
                         text="MERN Boilerplate"
                         duration={1}

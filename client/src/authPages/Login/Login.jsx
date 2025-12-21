@@ -10,7 +10,7 @@ const Login = () => {
     email: "",
     password: "",
   })
-  
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -37,6 +37,8 @@ const Login = () => {
     }
   }
 
+  
+
   return (
     <ClickSpark
       className="z-[9999]"
@@ -48,10 +50,10 @@ const Login = () => {
 
       <div className="bg-white text-black min-h-screen flex flex-col items-center justify-center w-full p-4">
 
-        <LoginForm 
-        onSubmit={handleSubmit}
+        <LoginForm
+          onSubmit={handleSubmit}
           formData={formData}
-          onChange={handleChange}/>
+          onChange={handleChange} />
       </div>
     </ClickSpark>
   )

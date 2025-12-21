@@ -61,12 +61,13 @@ const Signup = () => {
           userName: formData.email.split('@')[0],
         }),
       })
+      localStorage.setItem("userEmail", formData.email)
       const data = await response.json()
       console.log("Response:", data)
 
       if (response.ok) {
         // Redirect to verification page or login
-        window.location.href = "/login"
+        window.location.href = "/verify"
       }
     } catch (error) {
       console.error("Error during signup:", error)

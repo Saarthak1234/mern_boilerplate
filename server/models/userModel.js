@@ -10,26 +10,30 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    userName:{
-        type:String,
-        required:true,
-    },
-    password: {
+    userName: {
         type: String,
         required: true,
     },
-    isAdmin: {
+    password: {
+        type: String,
+        required: function () {
+            return this.provider === "local";
+        },
+        select: false,
+    },
+    provider: {
+        type: String,
+        enum: ["local", "google", "github"],
+        default: "local",
+    },
+    isVerified: {
         type: Boolean,
         default: false,
     },
-    isVerified:{
-        type:Boolean,
-        default:false,
-    },
-    otp:{
-        type:Number,
+    otp: {
+        type: Number,
         expireAfterSeconds: 180,
-        default:"",
+        default: "",
     },
     githubId: {
         type: String,
