@@ -149,8 +149,8 @@ GET     /api/auth/google/callback
 
 OAuth authentication is handled using Passport.js strategies. On successful authentication, the user is processed by the OAuth success handler. Failed authentication attempts are redirected to the configured failure handler.
 
-##Technology Stack
-###Backend
+## Technology Stack
+### Backend
 
 - Node.js
 - Express.js
@@ -159,18 +159,18 @@ OAuth authentication is handled using Passport.js strategies. On successful auth
 - Passport.js
 - Nodemailer
 
-###Frontend
+### Frontend
 
 - React
 - Vite
 - shadcn/ui
 - Tailwind CSS
 
-##Notes
+## Notes
 This project provides a strong authentication foundation, not a complete application
 Additional validation, role-based access control, and authorization layers can be implemented as needed
 Route prefixes and middleware can be modified without changing core authentication logic
 Suitable for learning, rapid prototyping, and production extension
 
-##License
+## License
 This project is free to use, modify, and integrate into both personal and commercial applications.
